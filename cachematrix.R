@@ -1,6 +1,7 @@
 # =============================================================================
 # Programming Assignment 2
 # Carlos Ruiz (cruizch@gmail.com)
+# 2014-08-19
 # =============================================================================
 
 # =============================================================================
@@ -38,7 +39,7 @@ makeCacheMatrix <- function(m = matrix()) {
 }
 
 # =============================================================================
-# makeCacheMatrix
+# cacheSolved
 #
 # function that calculates the matrix inverse (just the first time) or gets the
 # cached matrix inverse
@@ -46,9 +47,9 @@ makeCacheMatrix <- function(m = matrix()) {
 # Carlos Ruiz (cruizch@gmail.com)
 # 2014-08-19
 # =============================================================================
-# m     matrix object
+# m     cache matrix object
 # =============================================================================
-cacheSolve <- function(m) {
+cacheSolve <- function(m, ...) {
 
     inv <- m$getInverse()
     
@@ -61,12 +62,18 @@ cacheSolve <- function(m) {
     # use the ginv function of the MASS package to get a generalized inverse,
     # so if the matrix is invertible then solve(m) == ginv(v)
     
-    inv <- solve(m$get())
+    inv <- solve(m$get(), ...)
     m$setInverse(inv)
     
     inv
 
 }
+
+# ============================================================================
+# the following code is for test purposes
+# Carlos Ruiz (cruizch@gmail.com)
+# 2014-08-19
+# ============================================================================
 
 # test matrix
 test <- matrix(data = c(1, 1, 0, 1, 0, 1, 0, 1, 0), nrow = 3, ncol = 3)
